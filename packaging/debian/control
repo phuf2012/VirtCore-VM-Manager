@@ -1,0 +1,11 @@
+Package: virtcore
+Version: 1.0.0~beta
+Section: admin
+Priority: optional
+Architecture: all
+Depends: python3, libvirt-clients, libvirt-daemon-system, virtinst, qemu-system-x86
+Maintainer: VirtCore Contributors
+Description: Linux virtual machine manager
+ VirtCore is a desktop interface for managing Linux virtual machines with
+ QEMU/KVM and libvirt. It can create machines from local installer images
+ and control their power state.

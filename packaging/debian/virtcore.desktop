@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=VirtCore 1.0.0 Beta
+GenericName=Virtual Machine Manager
+Comment=Create and manage Linux virtual machines
+Exec=virtcore --open
+Icon=virtcore
+Terminal=false
+Type=Application
+Categories=System;Emulator;
+Keywords=virtualization;VM;QEMU;KVM;libvirt;
