@@ -1,64 +1,64 @@
-# VirtCore 1.0.0 Beta
+# VirtCore 1.0.0 Beta 2
 
-**A Linux-first desktop interface for QEMU/KVM virtual machines.** VirtCore helps you create and control Linux VMs from a local web dashboard. The project is in beta; this first release targets Debian and Ubuntu hosts.
+**A Linux-first desktop interface for QEMU/KVM virtual machines.** VirtCore helps you create and control Linux VMs from a local desktop window. This beta targets Debian and Ubuntu hosts.
 
-> GitHub release title: **VirtCore 1.0.0 Beta**
+> GitHub release title: **VirtCore 1.0.0 Beta 2**
 
 ## What works today
 
-- List VMs registered with the local libvirt system connection.
-- Create a VM from a local `.iso` or `.img` installer.
-- Choose the VM name, memory, processor count, and virtual disk size.
-- Start, pause, resume, shut down, and delete VMs.
-- See whether the host can connect to libvirt.
+- List machines registered with the libvirt system connection.
+- Create a VM from a local `.iso` or `.img` installer using a native file picker.
+- Set the VM name, memory, processor count, and virtual disk size.
+- Start, pause, resume, gracefully shut down, or delete a VM.
+- Open the VM's local SPICE console with `virt-viewer`.
+- See libvirt connection state and operation errors in the app.
 
 VirtCore currently manages **Linux guests on a Linux QEMU/KVM host**. Windows guests and additional host platforms are planned for later releases.
 
 ## Install
 
-Download `virtcore_1.0.0~beta_all.deb` from [Releases](https://github.com/phuf2012/VirtCore-VM-Manager/releases), then install it from the directory containing the file:
+Download `virtcore_1.0.0~beta2_all.deb` from [Releases](https://github.com/phuf2012/VirtCore-VM-Manager/releases), then install it from the directory containing the file:
 
 ```sh
-sudo apt install ./virtcore_1.0.0~beta_all.deb
+sudo apt install ./virtcore_1.0.0~beta2_all.deb
 ```
 
-Launch **VirtCore 1.0.0 Beta** from your desktop application menu. The package depends on Python 3, QEMU/KVM, libvirt, and `virt-install` and will ask APT to install those packages if needed.
+Launch **VirtCore 1.0.0 Beta 2** from your desktop application menu. The package depends on Python 3, Tk, QEMU/KVM, libvirt, `virt-install`, and `virt-viewer`; APT installs these packages if needed.
 
 ## Host setup
 
-Make sure hardware virtualization is enabled in firmware and that the libvirt service is running. VirtCore uses the `qemu:///system` libvirt connection by default. On Debian or Ubuntu, a typical user setup is:
+Make sure hardware virtualization is enabled in firmware and that the libvirt service is running. VirtCore uses `qemu:///system` by default. On Debian or Ubuntu, a typical user setup is:
 
 ```sh
 sudo usermod -aG libvirt "$USER"
 ```
 
-Sign out and back in for the group change to take effect. Distribution policy can vary; follow your distribution's libvirt guidance if it differs. VirtCore does not elevate itself and cannot bypass libvirt permissions.
+Sign out and back in for the group change to take effect. Distribution policy varies, so follow your distribution's libvirt guidance if it differs. VirtCore runs commands as the logged-in user and does not elevate itself.
 
-The installer image path must exist on the Linux host running VirtCore. VM disks are created through `virt-install` in the libvirt default storage pool.
+VM disks are created through `virt-install` in the libvirt default storage pool. The installer image is selected from a file on the same Linux host.
 
 ## Build from source
 
-Requirements: Python 3, `dpkg-deb`, and the VM dependencies above. From the repository root:
+Requirements: Python 3 with Tk, `dpkg-deb`, and the VM dependencies above. From the repository root:
 
 ```sh
 ./build-deb.sh
 ```
 
-This creates `dist/virtcore_1.0.0~beta_all.deb`. To run without installing the package:
+This creates `dist/virtcore_1.0.0~beta2_all.deb`. To run directly from source:
 
 ```sh
 python3 app.py
 ```
 
-Open <http://127.0.0.1:8765>. The app binds to localhost by default. You can set `VIRTCORE_PORT` to change the port, `VIRTCORE_LIBVIRT_URI` to choose another libvirt URI, and `VIRTCORE_HOST` to override the bind address.
+Set `VIRTCORE_LIBVIRT_URI` to manage another libvirt connection.
 
 ## Known limitations
 
-- The interface is a local browser-based desktop app, not a standalone hypervisor or guest console.
-- Installer images must already be downloaded; ISO discovery and downloads are not included yet.
-- Guest installation proceeds in the VM's graphical console, which may be opened through a SPICE client or virt-manager.
-- VM configuration editing, snapshots, USB passthrough, and networking controls are not included in this beta.
-- The package currently targets Debian/Ubuntu x86-64 hosts.
+- VirtCore manages VMs; it is not a hypervisor itself.
+- Installer images must already be downloaded; image discovery and downloads are not included.
+- VM configuration editing, snapshots, USB passthrough, and network controls are not included in this beta.
+- The Debian package currently targets Debian/Ubuntu x86-64 hosts.
 
 ## Contributing and support
 

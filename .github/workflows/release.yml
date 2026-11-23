@@ -21,6 +21,6 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          name: VirtCore 1.0.0 Beta
+          name: VirtCore 1.0.0 Beta 2
           generate_release_notes: true
-          files: dist/virtcore_1.0.0~beta_all.deb
+          files: dist/virtcore_1.0.0~beta2_all.deb

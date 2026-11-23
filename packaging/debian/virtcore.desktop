@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=VirtCore 1.0.0 Beta
+Name=VirtCore 1.0.0 Beta 2
 GenericName=Virtual Machine Manager
 Comment=Create and manage Linux virtual machines
-Exec=virtcore --open
+Exec=virtcore
 Icon=virtcore
 Terminal=false
 Type=Application
